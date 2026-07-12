@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+<title>SaltySnack - Detalhe do Produto</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&amp;family=Be+Vietnam+Pro:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind Theme Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface": "#1a1c1c",
+                    "secondary-fixed-dim": "#ffba20",
+                    "on-tertiary-fixed-variant": "#783200",
+                    "surface-variant": "#e2e2e2",
+                    "surface-bright": "#f9f9f9",
+                    "tertiary-fixed-dim": "#ffb690",
+                    "on-surface-variant": "#5b403f",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-secondary-fixed-variant": "#5e4200",
+                    "background": "#f9f9f9",
+                    "tertiary-container": "#c05400",
+                    "primary-fixed-dim": "#ffb3b1",
+                    "surface-container-high": "#e8e8e8",
+                    "primary": "#b7122a",
+                    "surface-tint": "#bb162c",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed": "#ffdea8",
+                    "inverse-surface": "#2f3131",
+                    "on-primary-fixed-variant": "#92001c",
+                    "outline-variant": "#e4bebc",
+                    "secondary": "#7c5800",
+                    "on-tertiary-container": "#fffbff",
+                    "inverse-primary": "#ffb3b1",
+                    "primary-fixed": "#ffdad8",
+                    "error": "#ba1a1a",
+                    "primary-container": "#db313f",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed": "#341100",
+                    "surface-container-low": "#f3f3f3",
+                    "tertiary": "#994100",
+                    "tertiary-fixed": "#ffdbca",
+                    "on-secondary-fixed": "#271900",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "on-background": "#1a1c1c",
+                    "outline": "#8f6f6e",
+                    "error-container": "#ffdad6",
+                    "surface": "#f9f9f9",
+                    "on-primary-container": "#fffbff",
+                    "surface-dim": "#dadada",
+                    "inverse-on-surface": "#f1f1f1",
+                    "on-secondary-container": "#6b4b00",
+                    "secondary-container": "#feb700",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#410007",
+                    "surface-container": "#eeeeee"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xl": "32px",
+                    "container-padding": "20px",
+                    "2xl": "48px",
+                    "base": "4px",
+                    "gutter": "16px",
+                    "sm": "12px",
+                    "xs": "8px",
+                    "lg": "24px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "body-lg": ["Be Vietnam Pro"],
+                    "label-md": ["Be Vietnam Pro"],
+                    "headline-lg": ["Montserrat"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "price-display": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "headline-xl": ["Montserrat"],
+                    "label-lg": ["Be Vietnam Pro"],
+                    "body-md": ["Be Vietnam Pro"]
+            },
+            "fontSize": {
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "700"}],
+                    "price-display": ["22px", {"lineHeight": "28px", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                    "label-lg": ["14px", {"lineHeight": "20px", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Be Vietnam Pro', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .product-image-container {
+            clip-path: ellipse(150% 100% at 50% 0%);
+        }
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        .quantity-btn:active {
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen pb-32">
+<!-- TopAppBar Shell (Filtered for Task-Focused View - Back button used) -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-gutter h-16 bg-surface/80 backdrop-blur-md shadow-sm">
+<button class="p-2 mr-2 hover:bg-surface-variant/50 transition-colors rounded-full active:scale-95 duration-100 ease-in-out" onclick="history.back()">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-extrabold text-primary tracking-tight truncate">Smoky BBQ Monster</h1>
+<div class="ml-auto">
+<button class="p-2 hover:bg-surface-variant/50 transition-colors rounded-full">
+<span class="material-symbols-outlined text-primary">share</span>
+</button>
+</div>
+</header>
+<main class="pt-16">
+<!-- Hero Section -->
+<section class="relative w-full h-[40vh] md:h-[50vh] overflow-hidden product-image-container">
+<img class="w-full h-full object-cover" data-alt="A macro food photography shot of a gourmet beef burger with melting cheddar cheese, crispy bacon, caramelized onions, and smoky BBQ sauce. The burger is presented on a rustic wooden board with a bright, appetizing light-mode aesthetic. High contrast, warm lighting makes the textures of the brioche bun and juicy meat stand out vividly against a clean, neutral background with red accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwQhl_2jf4WGOZ_q0hcrDAwM1KvDo0bL7PFM-FJmr611Dn5119NS-ayR0PLHmVRs6XbmQm72HLl2M6Frx6M_1grfXjR05L78fHZH-b60vrIwSQ8q7LlNsNWgui_5GDgpuL85z9kNNfePdyXbh8652kikSB8x3FZZEa90WCBzLkpmemv0aeozcyPayOhKETClwMtap3pUnhyiOGO49PbIBa9-l2nKNm_mDfLb3js3uKB_z6La2ilPFddQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+</section>
+<!-- Product Details -->
+<div class="px-container-padding -mt-8 relative z-10">
+<div class="bg-surface-container-lowest rounded-3xl p-lg shadow-[0_10px_20px_rgba(0,0,0,0.06)]">
+<div class="flex justify-between items-start mb-xs">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">Smoky BBQ Monster</h2>
+<span class="font-price-display text-price-display text-primary">R$ 42,90</span>
+</div>
+<!-- Badges -->
+<div class="flex gap-xs mb-md">
+<span class="bg-tertiary/10 text-tertiary-container px-3 py-1 rounded-full font-label-md text-label-md">Mais Pedido</span>
+<span class="bg-error/10 text-error px-3 py-1 rounded-full font-label-md text-label-md">Picante 🔥</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    Blend artesanal de 180g de carne bovina premium, queijo cheddar inglês derretido, fatias crocantes de bacon caramelizado, cebola roxa marinada e nosso exclusivo molho BBQ defumado em lenha de macieira. Servido no pão brioche amanteigado.
+                </p>
+</div>
+</div>
+<!-- Adicionais Section -->
+<section class="mt-xl px-container-padding">
+<div class="flex items-center justify-between mb-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Adicionais</h3>
+<span class="bg-surface-variant text-on-surface-variant font-label-md text-label-md px-2 py-0.5 rounded">Opcional</span>
+</div>
+<div class="space-y-sm">
+<!-- Additional Items (Styled as large tappable tiles per guidance) -->
+<label class="flex items-center justify-between p-md bg-surface-container rounded-2xl cursor-pointer hover:bg-surface-variant/50 transition-all border-2 border-transparent has-[:checked]:border-primary/30 has-[:checked]:bg-primary/5 group">
+<div class="flex items-center gap-md">
+<div class="relative flex items-center justify-center">
+<input class="peer h-6 w-6 rounded-lg border-outline text-primary focus:ring-primary/20" type="checkbox"/>
+</div>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Queijo Extra</p>
+<p class="font-label-md text-label-md text-on-surface-variant">+ Cheddar Inglês</p>
+</div>
+</div>
+<span class="font-label-lg text-label-lg text-primary">+ R$ 4,50</span>
+</label>
+<label class="flex items-center justify-between p-md bg-surface-container rounded-2xl cursor-pointer hover:bg-surface-variant/50 transition-all border-2 border-transparent has-[:checked]:border-primary/30 has-[:checked]:bg-primary/5 group">
+<div class="flex items-center gap-md">
+<input class="h-6 w-6 rounded-lg border-outline text-primary focus:ring-primary/20" type="checkbox"/>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Bacon Crocante</p>
+<p class="font-label-md text-label-md text-on-surface-variant">2 fatias extras</p>
+</div>
+</div>
+<span class="font-label-lg text-label-lg text-primary">+ R$ 6,00</span>
+</label>
+<label class="flex items-center justify-between p-md bg-surface-container rounded-2xl cursor-pointer hover:bg-surface-variant/50 transition-all border-2 border-transparent has-[:checked]:border-primary/30 has-[:checked]:bg-primary/5 group">
+<div class="flex items-center gap-md">
+<input class="h-6 w-6 rounded-lg border-outline text-primary focus:ring-primary/20" type="checkbox"/>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface">Ovo Frito</p>
+<p class="font-label-md text-label-md text-on-surface-variant">Gema mole</p>
+</div>
+</div>
+<span class="font-label-lg text-label-lg text-primary">+ R$ 3,50</span>
+</label>
+</div>
+</section>
+<!-- Observation -->
+<section class="mt-xl px-container-padding">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-md">Alguma observação?</h3>
+<textarea class="w-full h-32 p-md bg-surface-container-high rounded-2xl border-none focus:ring-2 focus:ring-primary/30 font-body-md text-body-md placeholder:text-on-surface-variant/50" placeholder="Ex: Tirar a cebola, ponto da carne bem passado..."></textarea>
+</section>
+</main>
+<!-- Sticky Footer Actions -->
+<footer class="fixed bottom-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-lg px-container-padding pt-md pb-xl shadow-[0_-10px_20px_rgba(0,0,0,0.06)] rounded-t-3xl border-t border-outline-variant/30">
+<div class="max-w-screen-xl mx-auto flex items-center justify-between gap-md">
+<!-- Quantity Selector -->
+<div class="flex items-center bg-surface-variant rounded-full p-1.5 shadow-inner">
+<button class="quantity-btn w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-lowest text-secondary-container transition-transform" onclick="updateQty(-1)">
+<span class="material-symbols-outlined font-bold">remove</span>
+</button>
+<span class="w-10 text-center font-headline-md text-headline-md text-on-surface" id="qty-display">1</span>
+<button class="quantity-btn w-10 h-10 rounded-full flex items-center justify-center bg-surface-container-lowest text-secondary-container transition-transform" onclick="updateQty(1)">
+<span class="material-symbols-outlined font-bold">add</span>
+</button>
+</div>
+<!-- Main CTA -->
+<button class="flex-1 bg-primary text-on-primary h-14 rounded-full font-label-lg text-label-lg flex items-center justify-center gap-sm active:scale-[0.98] transition-transform shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">shopping_basket</span>
+<span>Adicionar ao Carrinho</span>
+<span class="ml-auto bg-on-primary/20 px-3 py-1 rounded-full text-sm">R$ 42,90</span>
+</button>
+</div>
+</footer>
+<script>
+        let quantity = 1;
+        const basePrice = 42.90;
+        const qtyDisplay = document.getElementById('qty-display');
+        
+        function updateQty(delta) {
+            quantity = Math.max(1, quantity + delta);
+            qtyDisplay.textContent = quantity;
+            
+            // Micro-interaction
+            qtyDisplay.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                qtyDisplay.style.transform = 'scale(1)';
+            }, 100);
+        }
+
+        // Add to cart animation logic
+        const btn = document.querySelector('button.bg-primary');
+        btn.addEventListener('click', () => {
+            btn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> <span>Adicionando...</span>';
+            setTimeout(() => {
+                btn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> <span>Adicionado!</span>';
+                setTimeout(() => {
+                    btn.innerHTML = '<span class="material-symbols-outlined">shopping_basket</span> <span>Adicionar ao Carrinho</span> <span class="ml-auto bg-on-primary/20 px-3 py-1 rounded-full text-sm">R$ 42,90</span>';
+                }, 1500);
+            }, 800);
+        });
+
+        // Floating shadow effect on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 20) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body></html>
