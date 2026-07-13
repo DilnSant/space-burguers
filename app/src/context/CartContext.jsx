@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useReducer } from 'react'
+import { DELIVERY_FEE } from '../config'
 
 const CartContext = createContext(null)
-const STORAGE_KEY = 'saltysnack.cart'
-const DELIVERY_FEE = 5.0
+const STORAGE_KEY = 'spaceburguer.cart'
 
 function loadInitialState() {
   try {

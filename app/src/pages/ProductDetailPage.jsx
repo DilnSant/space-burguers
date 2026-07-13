@@ -7,11 +7,7 @@ import { getProductById, addonsCatalog } from '../data/products'
 import { formatPrice } from '../utils/format'
 import { useCart } from '../context/CartContext'
 
-const ADD_STATE = {
-  IDLE: 'idle',
-  ADDING: 'adding',
-  ADDED: 'added',
-}
+const ADD_STATE = { IDLE: 'idle', ADDING: 'adding', ADDED: 'added' }
 
 export default function ProductDetailPage() {
   const { id } = useParams()
@@ -34,8 +30,8 @@ export default function ProductDetailPage() {
   if (!product) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-md p-lg text-center">
-        <h1 className="font-headline-md text-headline-md text-on-surface">Produto não encontrado</h1>
-        <button className="text-primary font-label-lg underline" onClick={() => navigate('/')}>
+        <h1 className="font-display text-xl uppercase text-star">Missão não encontrada</h1>
+        <button className="neon-purple font-heading underline" onClick={() => navigate('/')}>
           Voltar ao cardápio
         </button>
       </div>
@@ -44,7 +40,7 @@ export default function ProductDetailPage() {
 
   function toggleAddon(addonId) {
     setSelectedAddonIds((prev) =>
-      prev.includes(addonId) ? prev.filter((id) => id !== addonId) : [...prev, addonId]
+      prev.includes(addonId) ? prev.filter((x) => x !== addonId) : [...prev, addonId]
     )
   }
 
@@ -54,146 +50,120 @@ export default function ProductDetailPage() {
     setTimeout(() => {
       addItem(product, quantity, selectedAddons, notes)
       setAddState(ADD_STATE.ADDED)
-      setTimeout(() => {
-        setAddState(ADD_STATE.IDLE)
-        setQuantity(1)
-        setSelectedAddonIds([])
-        setNotes('')
-      }, 1200)
-    }, 500)
+      setTimeout(() => navigate('/carrinho'), 700)
+    }, 400)
   }
 
   return (
-    <div className="bg-background text-on-surface min-h-screen pb-32">
-      <TopAppBar
-        title={product.name}
-        showBack
-        trailing={
-          <button className="p-2 hover:bg-surface-variant/50 transition-colors rounded-full" aria-label="Compartilhar">
-            <Icon name="share" className="text-primary" />
-          </button>
-        }
-      />
+    <div className="min-h-screen pb-40">
+      <TopAppBar title="Space Burguer" showBack centerLogo />
 
       <main className="pt-16">
-        {/* Hero Section */}
-        <section className="relative w-full h-[40vh] md:h-[50vh] overflow-hidden product-image-container">
+        {/* Hero */}
+        <section className="relative w-full aspect-square md:aspect-[16/10] overflow-hidden">
           <img className="w-full h-full object-cover" src={product.image} alt={product.name} />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-space-950 via-space-950/20 to-transparent" />
+          {product.deliveryOnly && (
+            <span className="absolute bottom-4 left-4 flex items-center gap-1.5 rounded-full border border-space-500/70 bg-space-900/70 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-star-dim backdrop-blur">
+              Só Delivery 📦
+            </span>
+          )}
         </section>
 
-        {/* Product Details */}
-        <div className="px-container-padding -mt-8 relative z-10">
-          <div className="bg-surface-container-lowest rounded-3xl p-lg shadow-[0_10px_20px_rgba(0,0,0,0.06)]">
-            <div className="flex justify-between items-start mb-xs gap-md">
-              <h2 className="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">
-                {product.name}
-              </h2>
-              <span className="font-price-display text-price-display text-primary whitespace-nowrap">
-                {formatPrice(product.price)}
-              </span>
-            </div>
-            {(product.badges.length > 0 || product.tags.length > 0) && (
-              <div className="flex gap-xs mb-md flex-wrap">
-                {product.badges.map((badge) => (
-                  <span key={badge} className="bg-tertiary/10 text-tertiary-container px-3 py-1 rounded-full font-label-md text-label-md">
-                    {badge}
-                  </span>
-                ))}
-                {product.tags.map((tag) => (
-                  <span key={tag} className="bg-error/10 text-error px-3 py-1 rounded-full font-label-md text-label-md">
-                    {tag}
-                  </span>
-                ))}
-              </div>
-            )}
-            <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-              {product.detailDescription}
-            </p>
-          </div>
+        {/* Title + price */}
+        <div className="px-container-padding -mt-6 relative z-10">
+          <h2 className="font-display text-4xl font-extrabold uppercase tracking-tight text-star">{product.name}</h2>
+          <p className="mt-3 text-body-md text-star-dim leading-relaxed">
+            {product.subtitle && <span className="font-bold neon-purple">{product.subtitle}: </span>}
+            {product.detailDescription}
+          </p>
+          <p className="mt-md font-display text-3xl font-extrabold text-star">{formatPrice(product.price)}</p>
         </div>
 
-        {/* Adicionais Section */}
+        {/* UPGRADE PROPULSÃO */}
         {product.hasAddons && (
           <section className="mt-xl px-container-padding">
-            <div className="flex items-center justify-between mb-md">
-              <h3 className="font-headline-md text-headline-md text-on-surface">Adicionais</h3>
-              <span className="bg-surface-variant text-on-surface-variant font-label-md text-label-md px-2 py-0.5 rounded">
-                Opcional
-              </span>
-            </div>
-            <div className="space-y-sm">
-              {addonsCatalog.map((addon) => (
-                <label
-                  key={addon.id}
-                  className="flex items-center justify-between p-md bg-surface-container rounded-2xl cursor-pointer hover:bg-surface-variant/50 transition-all border-2 border-transparent has-[:checked]:border-primary/30 has-[:checked]:bg-primary/5"
-                >
-                  <div className="flex items-center gap-md">
-                    <input
-                      className="h-6 w-6 rounded-lg border-outline text-primary focus:ring-primary/20"
-                      type="checkbox"
-                      checked={selectedAddonIds.includes(addon.id)}
-                      onChange={() => toggleAddon(addon.id)}
-                    />
-                    <div>
-                      <p className="font-label-lg text-label-lg text-on-surface">{addon.name}</p>
-                      <p className="font-label-md text-label-md text-on-surface-variant">{addon.description}</p>
+            <h3 className="font-display text-lg font-bold uppercase tracking-wide text-star mb-md">
+              Upgrade Propulsão
+            </h3>
+            <div className="panel divide-y divide-space-600/40">
+              {addonsCatalog.map((addon) => {
+                const checked = selectedAddonIds.includes(addon.id)
+                return (
+                  <label
+                    key={addon.id}
+                    className="flex items-center justify-between gap-md p-md cursor-pointer transition-colors hover:bg-space-700/40"
+                  >
+                    <div className="flex items-center gap-md">
+                      <input
+                        type="checkbox"
+                        className="h-6 w-6 rounded-md border-space-500 bg-space-900 text-neon-magenta focus:ring-neon-purple/40 focus:ring-offset-0"
+                        checked={checked}
+                        onChange={() => toggleAddon(addon.id)}
+                      />
+                      <span className="font-heading text-star">{addon.name}</span>
                     </div>
-                  </div>
-                  <span className="font-label-lg text-label-lg text-primary">+ {formatPrice(addon.price)}</span>
-                </label>
-              ))}
+                    <span className="font-heading font-bold text-neon-purple whitespace-nowrap">
+                      + {formatPrice(addon.price)}
+                    </span>
+                  </label>
+                )
+              })}
             </div>
           </section>
         )}
 
-        {/* Observation */}
+        {/* Observações */}
         <section className="mt-xl px-container-padding">
-          <h3 className="font-headline-md text-headline-md text-on-surface mb-md">Alguma observação?</h3>
+          <h3 className="font-display text-lg font-bold uppercase tracking-wide text-star mb-md">Registro de bordo</h3>
           <textarea
-            className="w-full h-32 p-md bg-surface-container-high rounded-2xl border-none focus:ring-2 focus:ring-primary/30 font-body-md text-body-md placeholder:text-on-surface-variant/50"
-            placeholder="Ex: Tirar a cebola, ponto da carne bem passado..."
+            className="w-full h-28 p-md rounded-2xl border border-space-600/60 bg-space-800/70 text-body-md text-star placeholder:text-star-faint focus:border-neon-purple focus:ring-2 focus:ring-neon-purple/30"
+            placeholder="Ex: sem cebola, ponto da carne bem passado..."
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
           />
         </section>
-      </main>
 
-      {/* Sticky Footer Actions */}
-      <footer className="fixed bottom-0 left-0 w-full z-50 bg-surface/90 backdrop-blur-lg px-container-padding pt-md pb-xl shadow-[0_-10px_20px_rgba(0,0,0,0.06)] rounded-t-3xl border-t border-outline-variant/30">
-        <div className="max-w-screen-xl mx-auto flex items-center justify-between gap-md">
+        {/* Units to deploy */}
+        <section className="mt-xl px-container-padding flex items-center justify-between">
+          <span className="caption">Units to deploy</span>
           <QuantitySelector
             value={quantity}
             onDecrement={() => setQuantity((q) => Math.max(1, q - 1))}
             onIncrement={() => setQuantity((q) => q + 1)}
-            highlightIncrement={false}
           />
-          <button
-            className="flex-1 bg-primary text-on-primary h-14 rounded-full font-label-lg text-label-lg flex items-center justify-center gap-sm active:scale-[0.98] transition-transform shadow-lg shadow-primary/20 disabled:opacity-80"
-            onClick={handleAddToCart}
-            disabled={addState !== ADD_STATE.IDLE}
-          >
-            {addState === ADD_STATE.IDLE && (
-              <>
-                <Icon name="shopping_basket" />
-                <span>Adicionar ao Carrinho</span>
-                <span className="ml-auto bg-on-primary/20 px-3 py-1 rounded-full text-sm">{formatPrice(totalPrice)}</span>
-              </>
-            )}
-            {addState === ADD_STATE.ADDING && (
-              <>
-                <Icon name="sync" className="animate-spin" />
-                <span>Adicionando...</span>
-              </>
-            )}
-            {addState === ADD_STATE.ADDED && (
-              <>
-                <Icon name="check_circle" filled />
-                <span>Adicionado!</span>
-              </>
-            )}
-          </button>
-        </div>
+        </section>
+      </main>
+
+      {/* Sticky footer */}
+      <footer className="fixed bottom-0 left-0 w-full z-50 bg-space-900/90 backdrop-blur-lg px-container-padding pt-md pb-8 border-t border-space-600/40">
+        <button
+          className="btn-nebula w-full h-14 text-base uppercase tracking-widest disabled:opacity-80"
+          onClick={handleAddToCart}
+          disabled={addState !== ADD_STATE.IDLE}
+        >
+          {addState === ADD_STATE.IDLE && (
+            <>
+              <Icon name="rocket_launch" filled className="text-[20px]" />
+              <span>Adicionar à Nave</span>
+              <span className="ml-auto rounded-full bg-white/20 px-3 py-1 text-sm normal-case tracking-normal">
+                {formatPrice(totalPrice)}
+              </span>
+            </>
+          )}
+          {addState === ADD_STATE.ADDING && (
+            <>
+              <Icon name="sync" className="animate-spin" />
+              <span>Acoplando...</span>
+            </>
+          )}
+          {addState === ADD_STATE.ADDED && (
+            <>
+              <Icon name="check_circle" filled />
+              <span>À bordo!</span>
+            </>
+          )}
+        </button>
       </footer>
     </div>
   )

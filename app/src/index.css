@@ -31,9 +31,53 @@
     'opsz' 24;
 }
 
-body {
-  font-family: 'Be Vietnam Pro', sans-serif;
-  -webkit-tap-highlight-color: transparent;
+@layer base {
+  html {
+    background-color: #080510;
+  }
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    color: #f4f0ff;
+    /* Deep-space starfield: layered radial gradients over a dark nebula base */
+    background-color: #080510;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.7), transparent),
+      radial-gradient(1px 1px at 75% 15%, rgba(255, 255, 255, 0.5), transparent),
+      radial-gradient(1.5px 1.5px at 50% 60%, rgba(180, 124, 255, 0.6), transparent),
+      radial-gradient(1px 1px at 85% 70%, rgba(255, 255, 255, 0.5), transparent),
+      radial-gradient(1px 1px at 10% 80%, rgba(255, 255, 255, 0.4), transparent),
+      radial-gradient(1200px 600px at 80% -10%, rgba(192, 38, 211, 0.18), transparent),
+      radial-gradient(900px 500px at 0% 100%, rgba(139, 92, 246, 0.16), transparent);
+    background-attachment: fixed;
+  }
+}
+
+@layer components {
+  /* Primary nebula gradient CTA */
+  .btn-nebula {
+    @apply relative flex items-center justify-center gap-2 rounded-2xl bg-nebula font-heading font-bold text-white shadow-nebula transition-all duration-200 active:scale-[0.98];
+  }
+  .btn-nebula:hover {
+    filter: brightness(1.08);
+  }
+
+  /* Glass / holographic panel */
+  .panel {
+    @apply rounded-2xl border border-space-600/60 bg-space-800/70 backdrop-blur-md;
+  }
+
+  .neon-purple {
+    color: #d7bcff;
+    text-shadow:
+      0 0 8px rgba(180, 124, 255, 0.7),
+      0 0 22px rgba(139, 92, 246, 0.5);
+  }
+
+  /* Mono, wide-tracked labels used for "telemetry" / form captions */
+  .caption {
+    @apply font-mono text-[11px] uppercase tracking-[0.2em] text-star-faint;
+  }
 }
 
 .hide-scrollbar::-webkit-scrollbar {
@@ -48,15 +92,11 @@ body {
   transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .product-card:active {
-  transform: scale(0.96);
+  transform: scale(0.97);
 }
 
 .floating-cart {
   transition: all 0.3s ease;
-}
-
-.product-image-container {
-  clip-path: ellipse(150% 100% at 50% 0%);
 }
 
 @keyframes slideIn {
@@ -75,7 +115,7 @@ body {
 
 @keyframes zoomIn {
   from {
-    transform: scale(0.85);
+    transform: scale(0.9);
     opacity: 0;
   }
   to {
@@ -84,7 +124,7 @@ body {
   }
 }
 .animate-zoom-in {
-  animation: zoomIn 0.4s ease-out forwards;
+  animation: zoomIn 0.35s ease-out forwards;
 }
 
 input:focus,
