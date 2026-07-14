@@ -30,7 +30,7 @@ export default function ProductDetailPage() {
   if (!product) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-md p-lg text-center">
-        <h1 className="font-display text-xl uppercase text-star">Missão não encontrada</h1>
+        <h1 className="font-display text-xl uppercase text-star">Produto não encontrado</h1>
         <button className="neon-purple font-heading underline" onClick={() => navigate('/')}>
           Voltar ao cardápio
         </button>
@@ -65,26 +65,26 @@ export default function ProductDetailPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-space-950 via-space-950/20 to-transparent" />
           {product.deliveryOnly && (
             <span className="absolute bottom-4 left-4 flex items-center gap-1.5 rounded-full border border-space-500/70 bg-space-900/70 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-star-dim backdrop-blur">
-              Só Delivery 📦
+              Somente entrega 📦
             </span>
           )}
         </section>
 
-        {/* Title + price */}
+        {/* Nome + preço */}
         <div className="px-container-padding -mt-6 relative z-10">
+          {product.subtitle && (
+            <span className="font-mono text-[11px] uppercase tracking-widest text-neon-purple">{product.subtitle}</span>
+          )}
           <h2 className="font-display text-4xl font-extrabold uppercase tracking-tight text-star">{product.name}</h2>
-          <p className="mt-3 text-body-md text-star-dim leading-relaxed">
-            {product.subtitle && <span className="font-bold neon-purple">{product.subtitle}: </span>}
-            {product.detailDescription}
-          </p>
+          <p className="mt-3 text-body-md text-star-dim leading-relaxed">{product.detailDescription}</p>
           <p className="mt-md font-display text-3xl font-extrabold text-star">{formatPrice(product.price)}</p>
         </div>
 
-        {/* UPGRADE PROPULSÃO */}
+        {/* Adicionais */}
         {product.hasAddons && (
           <section className="mt-xl px-container-padding">
             <h3 className="font-display text-lg font-bold uppercase tracking-wide text-star mb-md">
-              Upgrade Propulsão
+              Adicionais
             </h3>
             <div className="panel divide-y divide-space-600/40">
               {addonsCatalog.map((addon) => {
@@ -115,7 +115,7 @@ export default function ProductDetailPage() {
 
         {/* Observações */}
         <section className="mt-xl px-container-padding">
-          <h3 className="font-display text-lg font-bold uppercase tracking-wide text-star mb-md">Registro de bordo</h3>
+          <h3 className="font-display text-lg font-bold uppercase tracking-wide text-star mb-md">Observações</h3>
           <textarea
             className="w-full h-28 p-md rounded-2xl border border-space-600/60 bg-space-800/70 text-body-md text-star placeholder:text-star-faint focus:border-neon-purple focus:ring-2 focus:ring-neon-purple/30"
             placeholder="Ex: sem cebola, ponto da carne bem passado..."
@@ -124,9 +124,9 @@ export default function ProductDetailPage() {
           />
         </section>
 
-        {/* Units to deploy */}
+        {/* Quantidade */}
         <section className="mt-xl px-container-padding flex items-center justify-between">
-          <span className="caption">Units to deploy</span>
+          <span className="caption">Quantidade</span>
           <QuantitySelector
             value={quantity}
             onDecrement={() => setQuantity((q) => Math.max(1, q - 1))}
@@ -144,8 +144,8 @@ export default function ProductDetailPage() {
         >
           {addState === ADD_STATE.IDLE && (
             <>
-              <Icon name="rocket_launch" filled className="text-[20px]" />
-              <span>Adicionar à Nave</span>
+              <Icon name="shopping_cart" filled className="text-[20px]" />
+              <span>Adicionar ao carrinho</span>
               <span className="ml-auto rounded-full bg-white/20 px-3 py-1 text-sm normal-case tracking-normal">
                 {formatPrice(totalPrice)}
               </span>
@@ -154,13 +154,13 @@ export default function ProductDetailPage() {
           {addState === ADD_STATE.ADDING && (
             <>
               <Icon name="sync" className="animate-spin" />
-              <span>Acoplando...</span>
+              <span>Adicionando...</span>
             </>
           )}
           {addState === ADD_STATE.ADDED && (
             <>
               <Icon name="check_circle" filled />
-              <span>À bordo!</span>
+              <span>Adicionado!</span>
             </>
           )}
         </button>

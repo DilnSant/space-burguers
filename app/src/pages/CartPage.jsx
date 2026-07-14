@@ -29,9 +29,9 @@ export default function CartPage() {
             <div className="w-40 h-40 rounded-full bg-space-800/60 border border-space-600/50 flex items-center justify-center mb-lg">
               <Icon name="rocket_launch" className="text-[72px] text-space-500" />
             </div>
-            <h2 className="font-display text-xl uppercase text-star mb-sm">Hangar vazio</h2>
+            <h2 className="font-display text-xl uppercase text-star mb-sm">Seu carrinho está vazio</h2>
             <p className="text-star-dim max-w-[280px] mb-xl">
-              Nenhuma missão a bordo ainda. Escolha seu combustível no cardápio galáctico.
+              Você ainda não adicionou nenhum item. Que tal escolher um lanche no cardápio?
             </p>
             <button className="btn-nebula px-xl h-12 uppercase tracking-widest text-sm" onClick={() => navigate('/')}>
               Ver cardápio
@@ -82,50 +82,47 @@ export default function CartPage() {
               ))}
             </section>
 
-            {/* Mission Telemetry */}
+            {/* Resumo */}
             <section className="mt-xl panel p-lg">
-              <h3 className="caption border-b border-space-600/40 pb-sm mb-md">Mission Telemetry</h3>
+              <h3 className="caption border-b border-space-600/40 pb-sm mb-md">Resumo do pedido</h3>
               <div className="space-y-sm font-mono text-sm">
                 <div className="flex justify-between text-star-dim">
-                  <span>SUBTOTAL</span>
+                  <span>Subtotal</span>
                   <span>{formatPrice(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-star-dim">
-                  <span>
-                    TAXA DE LANÇAMENTO
-                    <span className="block text-[10px] text-star-faint">(Delivery Only)</span>
-                  </span>
+                  <span>Taxa de entrega</span>
                   <span>{formatPrice(deliveryFee)}</span>
                 </div>
                 <div className="pt-sm border-t border-space-600/40 flex justify-between items-baseline">
-                  <span className="font-heading text-lg font-bold text-star">TOTAL</span>
+                  <span className="font-heading text-lg font-bold text-star">Total</span>
                   <span className="font-heading text-lg font-bold text-neon-pink">{formatPrice(total)}</span>
                 </div>
-                <p className="text-right text-[10px] text-neon-gold">Estimated arrival: 35 min</p>
+                <p className="text-right text-[10px] text-neon-gold">Entrega estimada: 35 min</p>
               </div>
             </section>
 
-            {/* Promo code */}
+            {/* Cupom */}
             <section className="mt-md panel p-md flex items-center justify-between border-dashed">
               <div className="flex items-center gap-md">
                 <Icon name="confirmation_number" className="text-neon-purple" />
                 <div>
-                  <p className="font-heading font-bold text-star">Promo Code</p>
-                  <p className="caption normal-case tracking-widest">Aplique códigos para reduzir combustível</p>
+                  <p className="font-heading font-bold text-star">Cupom de desconto</p>
+                  <p className="caption normal-case tracking-widest">Insira um código para ganhar desconto</p>
                 </div>
               </div>
               <button className="font-mono text-xs uppercase tracking-widest text-neon-purple underline underline-offset-4">
-                Add code
+                Adicionar
               </button>
             </section>
 
-            {/* Finalize */}
+            {/* Finalizar */}
             <button
               className="btn-nebula w-full h-14 mt-xl text-base uppercase tracking-widest"
               onClick={() => navigate('/finalizar')}
             >
-              Finalizar Missão
-              <Icon name="rocket_launch" filled className="text-[20px]" />
+              Finalizar pedido
+              <Icon name="arrow_forward" className="text-[20px]" />
             </button>
           </>
         )}

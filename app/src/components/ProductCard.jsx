@@ -4,8 +4,7 @@ import { formatPrice } from '../utils/format'
 import { useCart } from '../context/CartContext'
 
 /**
- * Card grande usado nas "Orbit Missions": imagem com overlay do código da missão,
- * nome, descrição, preço e botão de adição rápida.
+ * Card de produto: foto, nome, descrição, preço e botão "+" de adição rápida.
  */
 export default function ProductCard({ product }) {
   const navigate = useNavigate()
@@ -26,13 +25,7 @@ export default function ProductCard({ product }) {
           className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
           style={{ backgroundImage: `url('${product.image}')` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-space-900/90 via-transparent to-space-900/40" />
-        <span className="absolute top-3 left-3 caption text-neon-cyan/90 drop-shadow">Cardápio Galáctico</span>
-        {product.code && (
-          <span className="absolute top-3 right-3 font-mono text-[11px] font-bold tracking-widest text-neon-gold">
-            {product.code}
-          </span>
-        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-space-900/70 via-transparent to-transparent" />
       </div>
       <div className="p-container-padding flex-1 flex flex-col">
         <h3 className="font-heading text-lg font-bold text-star">{product.name}</h3>
@@ -42,7 +35,7 @@ export default function ProductCard({ product }) {
           <button
             className="w-10 h-10 rounded-full border border-space-600 bg-space-700/60 text-neon-purple flex items-center justify-center transition-all hover:bg-nebula hover:text-white hover:border-transparent active:scale-90"
             onClick={handleQuickAdd}
-            aria-label={`Adicionar ${product.name} à nave`}
+            aria-label={`Adicionar ${product.name} ao carrinho`}
           >
             <Icon name="add" />
           </button>

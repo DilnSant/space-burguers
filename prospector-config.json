@@ -1,0 +1,14 @@
+{
+  "assinatura": {
+    "nome": "Método Develops",
+    "apresentacao": "Designer de páginas de alta conversão",
+    "whatsapp": "48988482877"
+  },
+  "prospeccao": {
+    "nichos": ["nutricionistas", "psicologos", "advogados", "psiquiatras", "dentistas", "fisioterapeutas"],
+    "cidade": "Florianópolis/SC, São José/SC, Biguaçu/SC, Palhoça/SC, Santo Amaro/SC",
+    "leadsPorBusca": 20
+  },
+  "envio": { "modo": "rascunho" },
+  "hostgator": { "usuario": "", "dominio": "", "servidor": "", "senha": "", "pastaBase": "clientes" }
+}

@@ -25,9 +25,9 @@ export default function FloatingCartButton() {
             </div>
             <div className="text-left">
               <span className="block font-mono text-[10px] uppercase tracking-widest opacity-80 leading-none">
-                Hangar
+                Carrinho
               </span>
-              <span className="font-heading text-label-lg">Ver pedido</span>
+              <span className="font-heading text-label-lg">Ver carrinho</span>
             </div>
           </div>
           <span className="font-display text-lg font-bold">{formatPrice(subtotal)}</span>

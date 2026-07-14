@@ -4,7 +4,7 @@
 export const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER || '5547984932926'
 
 export const STORE_NAME = 'Space Burguer'
-export const STORE_PICKUP_ADDRESS = 'Hangar Central — Estação Orbital 47'
+export const STORE_PICKUP_ADDRESS = 'Retirada no balcão da loja'
 
 // "Taxa de Lançamento" (delivery fee)
 export const DELIVERY_FEE = 12.0

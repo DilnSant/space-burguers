@@ -2,12 +2,11 @@ import { NavLink } from 'react-router-dom'
 import Icon from './Icon'
 import { useCart } from '../context/CartContext'
 
-// Navegação da nave: Missions (cardápio) · Launch Log · Hangar (carrinho) · Astronaut
 const navItems = [
-  { to: '/', icon: 'restaurant', label: 'Missions' },
-  { icon: 'assignment', label: 'Launch Log', disabled: true },
-  { to: '/carrinho', icon: 'shopping_cart', label: 'Hangar', showBadge: true },
-  { icon: 'person', label: 'Astronaut', disabled: true },
+  { to: '/', icon: 'restaurant_menu', label: 'Cardápio' },
+  { icon: 'receipt_long', label: 'Pedidos', disabled: true },
+  { to: '/carrinho', icon: 'shopping_cart', label: 'Carrinho', showBadge: true },
+  { icon: 'person', label: 'Perfil', disabled: true },
 ]
 
 export default function BottomNav() {

@@ -2,15 +2,15 @@
 // servidas de app/public/images/.
 const img = (slug) => `/images/products/${slug}.png`
 
-// Chips de categoria (filtro no topo do cardápio). 'orbita' = todos.
+// Categorias exibidas como abas no cardápio.
 export const categories = [
-  { id: 'orbita', label: 'Órbita' },
-  { id: 'galactica', label: 'Galáctica' },
-  { id: 'side', label: 'Side Missions' },
-  { id: 'combustivel', label: 'Combustível' },
+  { id: 'lanches', label: 'Lanches' },
+  { id: 'porcoes', label: 'Porções' },
+  { id: 'bebidas', label: 'Bebidas' },
+  { id: 'sobremesas', label: 'Sobremesas' },
 ]
 
-// UPGRADE PROPULSÃO — adicionais oficiais do cardápio.
+// Adicionais oficiais do cardápio (checkbox no detalhe do produto).
 export const addonsCatalog = [
   { id: 'bacon', name: 'Bacon', price: 7.0 },
   { id: 'cebola-caramelizada', name: 'Cebola Caramelizada', price: 4.0 },
@@ -20,18 +20,16 @@ export const addonsCatalog = [
   { id: 'cheddar-cremoso', name: 'Cheddar Cremoso', price: 6.0 },
 ]
 
-// section: 'featured' | 'side' | 'orbit' | 'combustivel'  -> controla a seção no cardápio
-// category: usado pelo filtro de chips (galactica = lanches, combustivel = bebidas)
+// category: usado pelas abas (lanches, porcoes, bebidas, sobremesas)
+// featured: destaque exibido no topo da aba Lanches
 export const products = [
   {
     id: 'space-bacon',
     name: 'Space Bacon',
-    section: 'featured',
-    category: 'galactica',
+    category: 'lanches',
+    featured: true,
     price: 24.99,
-    code: 'MISSION-06',
-    badge: 'Orbital Masterpiece',
-    subtitle: 'Missão Galáctica',
+    subtitle: 'O queridinho da casa',
     description: 'Pão, hambúrguer 140g, bacon e cebola caramelizada.',
     detailDescription: 'Pão, hambúrguer 140g, bacon e cebola caramelizada. Acompanha batata frita palito.',
     deliveryOnly: true,
@@ -41,46 +39,38 @@ export const products = [
   {
     id: 'space-kids',
     name: 'Space Kids',
-    section: 'side',
-    category: 'galactica',
+    category: 'lanches',
     price: 15.99,
-    code: 'MISSION-01',
     description: 'Pão, hambúrguer e queijo.',
-    detailDescription: 'Pão, hambúrguer e queijo. A missão perfeita para pequenos astronautas.',
+    detailDescription: 'Pão, hambúrguer e queijo. O lanche perfeito para os pequenos.',
     image: img('space-kids'),
     hasAddons: true,
   },
   {
     id: 'space-smash-simples',
     name: 'Space Smash Simples',
-    section: 'side',
-    category: 'galactica',
+    category: 'lanches',
     price: 17.99,
-    code: 'MISSION-02',
     description: 'Pão, hambúrguer 80g, queijo, cheddar e picles.',
-    detailDescription: 'Pão, hambúrguer 80g smash, queijo, cheddar e picles.',
+    detailDescription: 'Pão, hambúrguer 80g no estilo smash, queijo, cheddar e picles.',
     image: img('space-smash-simples'),
     hasAddons: true,
   },
   {
     id: 'space-salada',
     name: 'Space Salada',
-    section: 'side',
-    category: 'galactica',
+    category: 'lanches',
     price: 19.99,
-    code: 'MISSION-03',
     description: 'Pão, hambúrguer, queijo, alface, tomate e picles.',
-    detailDescription: 'Pão, hambúrguer, queijo, alface, tomate e picles. Leve como gravidade zero.',
+    detailDescription: 'Pão, hambúrguer, queijo, alface, tomate e picles. Leve e saboroso.',
     image: img('space-salada'),
     hasAddons: true,
   },
   {
     id: 'space-doritos',
     name: 'Space Doritos',
-    section: 'orbit',
-    category: 'galactica',
+    category: 'lanches',
     price: 29.99,
-    code: 'MISSION-04',
     description: 'Pão, hambúrguer, queijo cheddar, alface, tomate e Doritos.',
     detailDescription: 'Pão, hambúrguer, queijo cheddar, alface, tomate e Doritos crocantes.',
     image: img('space-doritos'),
@@ -89,10 +79,8 @@ export const products = [
   {
     id: 'space-cebola-caramelizada',
     name: 'Space Cebola Caramelizada',
-    section: 'orbit',
-    category: 'galactica',
+    category: 'lanches',
     price: 22.99,
-    code: 'MISSION-05',
     description: 'Pão, hambúrguer, queijo, cebola caramelizada e picles.',
     detailDescription: 'Pão, hambúrguer, queijo, cebola caramelizada e picles.',
     image: img('space-cebola-caramelizada'),
@@ -101,24 +89,20 @@ export const products = [
   {
     id: 'space-frango',
     name: 'Space Frango',
-    section: 'orbit',
-    category: 'galactica',
+    category: 'lanches',
     price: 23.99,
-    code: 'MISSION-07',
     description: 'Pão, frango, alface, tomate e picles.',
-    detailDescription: 'Pão, frango, alface, tomate e picles. Combustível leve para a órbita.',
+    detailDescription: 'Pão, frango empanado, alface, tomate e picles.',
     image: img('space-frango'),
     hasAddons: true,
   },
   {
     id: 'refri-lata',
     name: 'Refri Lata',
-    section: 'combustivel',
-    category: 'combustivel',
+    category: 'bebidas',
     price: 6.0,
-    code: 'FUEL-01',
-    description: 'Coca, Sprite, Fanta (350ml).',
-    detailDescription: 'Combustível gelado para a viagem: Coca, Sprite ou Fanta (350ml).',
+    description: 'Coca, Sprite ou Fanta (350ml).',
+    detailDescription: 'Refrigerante gelado em lata: Coca, Sprite ou Fanta (350ml).',
     image: img('refri-lata'),
     hasAddons: false,
   },
